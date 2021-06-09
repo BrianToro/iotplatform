@@ -1,10 +1,24 @@
 'use strict'
 
+const defaults = require('defaults')
 const setUpDB = require('./lib/database')
 const setUpModelAgent = require('./models/agent')
 const setUpModelMetric = require('./models/metric')
+const setUpAgent = require('./lib/agent')
 
 module.exports = async ({ config }) => {
+  config = defaults(config, {
+    dialect: 'sqlite',
+    pool: {
+      max: 10,
+      min: 0,
+      idle: 10000
+    },
+    query: {
+      raw: true
+    }
+  })
+
   // @INFO: Set up base de datos
   const sequelize = setUpDB({ config })
 
@@ -22,7 +36,7 @@ module.exports = async ({ config }) => {
   if (config.setup) {
     await sequelize.sync({ force: true })
   }
-  const Agent = {}
+  const Agent = setUpAgent(AgentModel)
   const Metric = {}
   return {
     Agent,

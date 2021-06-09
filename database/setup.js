@@ -14,9 +14,7 @@ async function setup () {
     message: 'This will destroy your database, are you sure?'
   }])
 
-  if (!answer.setup) {
-    return console.log('')
-  }
+  if (!answer.setup) return process.exit(0)
 
   const config = {
     database: process.env.DB_NAME || 'iotplatform',

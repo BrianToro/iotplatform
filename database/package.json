@@ -5,16 +5,23 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard --fix",
-    "setup": "DEBUG=iotplatform:* node setup.js"
+    "setup": "DEBUG=iotplatform:* node setup.js",
+    "test": "DEBUG=iotplatform:* ava --verbose"
   },
   "author": "BrianToro",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^3.15.0",
+    "nyc": "^15.1.0",
+    "proxyquire": "^2.1.3",
+    "sinon": "^11.1.1",
+    "sqlite3": "^5.0.2",
     "standard": "^16.0.3"
   },
   "dependencies": {
     "chalk": "^4.1.1",
     "debug": "^4.3.1",
+    "defaults": "^1.0.3",
     "inquirer": "^8.1.0",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
