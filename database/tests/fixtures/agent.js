@@ -9,7 +9,7 @@ const agent = {
   pid: 0,
   connected: true,
   createdAt: new Date(),
-  updatedAt: new Date(),
+  updatedAt: new Date()
 }
 
 function extend (obj, values) {

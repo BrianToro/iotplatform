@@ -5,6 +5,7 @@ const setUpDB = require('./lib/database')
 const setUpModelAgent = require('./models/agent')
 const setUpModelMetric = require('./models/metric')
 const setUpAgent = require('./lib/agent')
+const setUpMetric = require('./lib/metric')
 
 module.exports = async ({ config }) => {
   config = defaults(config, {
@@ -37,7 +38,7 @@ module.exports = async ({ config }) => {
     await sequelize.sync({ force: true })
   }
   const Agent = setUpAgent(AgentModel)
-  const Metric = {}
+  const Metric = setUpMetric(MetricModel, AgentModel)
   return {
     Agent,
     Metric

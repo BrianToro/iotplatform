@@ -8,13 +8,18 @@ const db = require('./')
 const prompt = inquirer.createPromptModule()
 
 async function setup () {
-  const answer = await prompt([{
-    type: 'confirm',
-    name: 'setup',
-    message: 'This will destroy your database, are you sure?'
-  }])
 
-  if (!answer.setup) return process.exit(0)
+  const flags = ['--yes', '-y']
+
+  if (!flags.includes(process.argv.pop())) {
+    const answer = await prompt([{
+      type: 'confirm',
+      name: 'setup',
+      message: 'This will destroy your database, are you sure?'
+    }])
+  
+    if (!answer.setup) return process.exit(0)
+  }
 
   const config = {
     database: process.env.DB_NAME || 'iotplatform',
